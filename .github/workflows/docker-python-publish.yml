@@ -1,2 +1,8 @@
-- name: Python Pytest Github Action
-  uses: fylein/python-pytest-github-action@v2
+name: Build
+on: [push]
+
+jobs:
+  build:
+    steps:
+    - name: Python Pytest Github Action
+      uses: fylein/python-pytest-github-action@v2

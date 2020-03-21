@@ -11,12 +11,13 @@ jobs:
   #   - name: Python Pytest Github Action
   #     uses: fylein/python-pytest-github-action@v2
   build:
-    runs-on: ubuntu-latest
-    # runs:
-    #   using: 'docker'
-    #   image: 'Dockerfile'
+    runs:
+      using: 'docker'
+      image: 'Dockerfile'
     steps:
-      - name: Say hello
+      - name: See directory
         run: echo $PWD
       - name: See directory
-        run: ls -la
+        run: ls -la ~/
+      - name: Tail file
+        run: tail -f entrypoint.sh

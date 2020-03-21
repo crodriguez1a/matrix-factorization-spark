@@ -3,10 +3,20 @@ name: Build
 on: [push]
 
 jobs:
+  # build:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     max-parallel: 4
+  #   steps:
+  #   - name: Python Pytest Github Action
+  #     uses: fylein/python-pytest-github-action@v2
   build:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
+    # runs:
+    #   using: 'docker'
+    #   image: 'Dockerfile'
     steps:
-    - name: Python Pytest Github Action
-      uses: fylein/python-pytest-github-action@v2
+      - name: Say hello
+        run: echo $PWD
+      - name: See directory
+        run: ls -la

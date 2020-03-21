@@ -3,18 +3,10 @@ name: Build
 on: [push]
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     max-parallel: 4
-  #   steps:
-  #   - name: Python Pytest Github Action
-  #     uses: fylein/python-pytest-github-action@v2
   build:
     runs-on: ubuntu-latest
-    runs:
-      using: 'docker'
-      image: 'Dockerfile'
+    strategy:
+      max-parallel: 4
     steps:
-      - name: Say hello
-        run: echo "Hello"
+    - name: Python Pytest Github Action
+      uses: fylein/python-pytest-github-action@v2

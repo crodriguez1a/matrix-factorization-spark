@@ -16,4 +16,5 @@ jobs:
       using: 'docker'
       image: 'Dockerfile'
     steps:
-      run: echo "Hello"
+      - name: Say hello
+        run: echo "Hello"

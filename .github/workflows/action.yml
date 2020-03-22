@@ -1,0 +1,11 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+    steps:
+    - name: Docker python3
+      uses: fylein/python-pytest-github-action@v2
+      # TODO: uses: crodriguez1a/matrix-factorization-spark@master

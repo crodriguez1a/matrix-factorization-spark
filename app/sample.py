@@ -4,7 +4,7 @@ def create_spark_context(name: str) -> SparkContext:
     conf: SparkConf = SparkConf().setAppName(name)
     return SparkContext.getOrCreate(conf)
 
-def spark_up(sc: SparkContext) -> rdd.RDD:
+def spark_up(sc: SparkContext) -> list:
     sample: list = [1, 2, 3]
     # resilient distributed dataset
     distributed_sample: rdd.RDD = sc.parallelize(sample)
@@ -16,5 +16,5 @@ if __name__ == "__main__":
     sc: SparkContext = create_spark_context("lazy_eval")
     print(f"Parallelism across {sc.defaultParallelism} nodes")
 
-    y: rdd.RDD = spark_up(sc)
+    y: list = spark_up(sc)
     print(y)

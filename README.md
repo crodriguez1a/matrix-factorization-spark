@@ -1,5 +1,5 @@
 # matrix-factorization-spark
-A PySpark implementation of Matrix Factorizations at Scale (Gittens et.al)
+A minimal PySpark implementation of Matrix Factorizations at Scale (Gittens et.al)
 
 ## Running the Cluster
 
@@ -23,8 +23,14 @@ To install dependencies:
 source app-start.sh
 ```
 
-<!-- Run Github action locally:
+<!-- TODO: Run Github action locally:
 
 ```
 act
 ``` -->
+
+<!-- ### TODO: Additional Notes
+
+**Numpy and Alpine**
+
+This project depends on `bde2020/spark-base` which uses `alpine:3.0` and is only compatible with `numpy<=1.14.4` -->

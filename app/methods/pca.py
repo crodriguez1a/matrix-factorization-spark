@@ -15,12 +15,13 @@ presented in Algorithm 1
 """
 @paper
 in step 1, a series of distributed matrix-vector products
-against AT A (MultiplyGramian) are used to extract Vk by
+against `A^T A` (MultiplyGramian) are used to extract Vk by
 applying the implicitly restarted Arnoldi method (IRAM) [33],
 """
 
 
 def gramian_matrix(rows: rdd.RDD) -> DenseMatrix:
+    """Computes the Gramian matrix `A^T A`."""
     mat = IndexedRowMatrix(rows)
     return mat.computeGramianMatrix()
 
@@ -29,6 +30,8 @@ def gramian_matrix(rows: rdd.RDD) -> DenseMatrix:
 then in step 2 a distributed matrix-matrix product followed
 by a collect is used to bring AVk to the driver.
 """
+
+# TODO: mat.multiply(DenseMatrix(2, 2, [0, 2, 1, 3])).rows.collect()
 
 """
 @paper

@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 from pyspark import SparkConf, SparkContext, rdd
 from pyspark.sql import SparkSession
-from pyspark.mllib.linalg.distributed import IndexedRow, DenseMatrix
+from pyspark.mllib.linalg.distributed import IndexedRowMatrix, IndexedRow
 
-from methods.pca import gramian_matrix
+from methods.pca import pca
 
 
 def init_session(app_name: str = "mxfs") -> SparkSession:
@@ -24,5 +24,6 @@ if __name__ == "__main__":
         IndexedRow(0, [1,2,3]),
         IndexedRow(1, [4,5,6])
     ])
-    gm: DenseMatrix = gramian_matrix(rows)
-    print(gm.values)
+    mat: IndexedRowMatrix = IndexedRowMatrix(rows)
+    svd: list = pca(mat, rows.count())
+    print(svd)

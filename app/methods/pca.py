@@ -20,10 +20,9 @@ applying the implicitly restarted Arnoldi method (IRAM) [33],
 """
 
 
-def gramian_matrix(rows: rdd.RDD) -> DenseMatrix:
+def multiply_gramian(mat: IndexedRowMatrix) -> DenseMatrix:
     """Computes the Gramian matrix `A^T A`."""
-    mat = IndexedRowMatrix(rows)
-    return mat.computeGramianMatrix()
+    return mat.computeGramianMatrix() # -> Vk
 
 """
 @paper
@@ -31,7 +30,8 @@ then in step 2 a distributed matrix-matrix product followed
 by a collect is used to bring AVk to the driver.
 """
 
-# TODO: mat.multiply(DenseMatrix(2, 2, [0, 2, 1, 3])).rows.collect()
+def matrices_product(mat: IndexedRowMatrix, Vk: DenseMatrix) -> IndexedRowMatrix:
+    return mat.multiply(Vk) # -> AVk or Y
 
 """
 @paper
@@ -40,3 +40,17 @@ to extract the top left singular vectors Uk and the corresponding eigenvalues Σ
 Here QR and SVD compute the “thin” versions of the QR and SVD decompositions [16].
 (Algorithm 1 calls MultiplyGramian, which is summarized in Algorithm 2).
 """
+
+def compute_final_svd(Y: IndexedRowMatrix, k:int) -> list:
+    svd_model = Y.computeSVD(k=k, computeU=True)
+    # svd_model.s
+    # svd_model.V
+    return svd_model.U.rows.collect()
+
+
+def pca(mat: IndexedRowMatrix, k: int) -> list:
+    Vk: DenseMatrix = multiply_gramian(mat)
+    Y: IndexedRowMatrix = matrices_product(mat, Vk)
+    final_svd: list = compute_final_svd(Y, k)
+
+    return final_svd

@@ -28,9 +28,3 @@ source app-start.sh
 ```
 act
 ``` -->
-
-<!-- ### TODO: Additional Notes
-
-**Numpy and Alpine**
-
-This project depends on `bde2020/spark-base` which uses `alpine:3.0` and is only compatible with `numpy<=1.14.4` -->

@@ -9,4 +9,4 @@ def test_gramian_matrix(spark_context):
         IndexedRow(1, [4, 5, 6])
     ],)
     gm: DenseMatrix = gramian_matrix(rows)
-    assert gm.collect() is not None
+    assert gm is not None

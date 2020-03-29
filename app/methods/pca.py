@@ -52,7 +52,7 @@ def compute_final_svd(sc: SparkContext, y: List[DenseVector], k:int) -> Singular
 def pca(sc: SparkContext, mat: RowMatrix, k: int) -> np.ndarray:
     Vk: DenseMatrix = multiply_gramian(mat)
     Y: list = matrices_product(mat, Vk)
-    final_svd: SingularValueDecomposition = compute_final_svd(Y, k)
+    final_svd: SingularValueDecomposition = compute_final_svd(sc, Y, k)
 
     # U -> a distributed matrix whose columns are the left singular vectors
     # of the SingularValueDecomposition if computeU was set to be True.

@@ -22,5 +22,5 @@ if __name__ == "__main__":
     # TEMP
     rows: rdd.RDD = sc.parallelize([[1,2,3], [4,5,6]])
     mat: RowMatrix = RowMatrix(rows)
-    svd: list = pca(sc, mat, rows.count())
-    print(svd)
+    pc: RowMatrix = pca(sc, mat, rows.count())
+    print(pc)

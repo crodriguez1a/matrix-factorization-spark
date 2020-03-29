@@ -29,3 +29,8 @@ def test_compute_final_svd(spark_context: SparkContext, mat: RowMatrix, rows: rd
     svd: SingularValueDecomposition = compute_final_svd(spark_context, Y, k)
 
     assert svd is not None
+
+def test_pca(spark_context: SparkContext, mat: RowMatrix, rows: rdd.RDD):
+    pc: RowMatrix = pca(spark_context, mat, rows.count())
+
+    assert pc is not None

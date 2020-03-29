@@ -15,7 +15,7 @@ To start cluster consisting of:
 Run the following:
 
 ```
-source docker-start.sh
+source app-start.sh
 ```
 
 <!-- TODO: Run Github action locally:

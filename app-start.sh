@@ -2,4 +2,5 @@
 
 echo 'Spark Up!'
 
-cd app/ && python3 -m pytest -x -rf
+docker-compose up
+docker exec -it spark-app /bin/sh

@@ -20,3 +20,5 @@ services:
   spark-app:
     image: bde/spark-app
     container_name: spark-app
+    depends_on:
+      - spark-master

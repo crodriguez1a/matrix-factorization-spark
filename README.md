@@ -15,6 +15,11 @@ To start cluster consisting of:
 Run the following:
 
 ```
+docker-compose up
+```
+
+Then, separately:
+```
 source app-start.sh
 ```
 

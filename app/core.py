@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from pyspark import SparkConf, SparkContext, rdd
 from pyspark.sql import SparkSession
-from pyspark.mllib.linalg.distributed import IndexedRowMatrix, IndexedRow
+from pyspark.mllib.linalg.distributed import RowMatrix
 
 from methods.pca import pca
 
@@ -20,10 +20,7 @@ if __name__ == "__main__":
     sc: SparkContext = spark.sparkContext
 
     # TEMP
-    rows: rdd.RDD = sc.parallelize([
-        IndexedRow(0, [1,2,3]),
-        IndexedRow(1, [4,5,6])
-    ])
-    mat: IndexedRowMatrix = IndexedRowMatrix(rows)
-    svd: list = pca(mat, rows.count())
-    print(svd)
+    rows: rdd.RDD = sc.parallelize([[1,2,3], [4,5,6]])
+    mat: RowMatrix = RowMatrix(rows)
+    pc: RowMatrix = pca(sc, mat, rows.count())
+    print(pc)

@@ -12,7 +12,8 @@ RUN chmod +x /app-start.sh
 RUN cd /app/ \
     && pip3 install --upgrade pip \
     && pip3 install -r requirements.txt \
-    && apk --no-cache add py3-numpy
+    && apk --no-cache add py3-numpy \
+    && apk add neovim
 
 # /usr/bin/python3
 ENV PYSPARK_PYTHON python3

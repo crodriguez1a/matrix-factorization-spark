@@ -19,6 +19,7 @@ docker-compose up
 ```
 
 Then, separately:
+
 ```
 source app-start.sh
 ```
